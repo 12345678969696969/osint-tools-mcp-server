@@ -33,7 +33,8 @@ RUN git clone https://github.com/p1ngul1n0/blackbird.git /opt/blackbird && \
     pip install --no-cache-dir -r requirements.txt
 
 # Copy server files
-COPY osint_tools_mcp_server.py /app/
+RUN mkdir -p /app/src
+COPY src/osint_tools_mcp_server.py /app/src/
 COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -41,4 +42,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 ENV PYTHONUNBUFFERED=1
 
 # Run the MCP server
-CMD ["python", "osint_tools_mcp_server.py"]
+CMD ["python", "src/osint_tools_mcp_server.py"]

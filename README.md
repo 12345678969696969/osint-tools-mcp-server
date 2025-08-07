@@ -7,15 +7,6 @@
 
 A comprehensive MCP (Model Context Protocol) server that exposes multiple OSINT (Open Source Intelligence) tools to AI assistants like Claude. This server allows AI to perform sophisticated reconnaissance and information gathering tasks using industry-standard OSINT tools.
 
-## 🎯 Why This Matters
-
-Ever wanted Claude to help you with OSINT investigations? Now it can! This MCP server gives Claude access to powerful reconnaissance tools, allowing it to:
-- Search for usernames across thousands of platforms
-- Investigate email addresses
-- Perform comprehensive domain reconnaissance  
-- Gather information from public sources
-- Chain multiple tools together for deep investigations
-
 ## 🛠️ Available Tools
 
 ### 🔍 **Sherlock** - Username Search
@@ -56,30 +47,6 @@ Lightning-fast searches across 581 sites for username reconnaissance.
 
 ## 🚀 Installation
 
-### Prerequisites
-
-First, you'll need to have the OSINT tools installed on your system. Here's a quick setup:
-
-```bash
-# Install Python tools
-pip install sherlock-project holehe maigret theharvester
-
-# Clone and setup SpiderFoot
-git clone https://github.com/smicallef/spiderfoot.git /opt/spiderfoot
-cd /opt/spiderfoot
-pip install -r requirements.txt
-
-# Clone and setup GHunt
-git clone https://github.com/mxrch/GHunt.git /opt/ghunt
-cd /opt/ghunt
-pip install -r requirements.txt
-
-# Clone and setup Blackbird
-git clone https://github.com/p1ngul1n0/blackbird.git /opt/blackbird
-cd /opt/blackbird
-pip install -r requirements.txt
-```
-
 ### MCP Server Setup
 
 1. **Clone this repository:**
@@ -92,6 +59,7 @@ cd osint-tools-mcp-server
 ```bash
 pip install -r requirements.txt
 ```
+This will automatically install Sherlock, Holehe, Maigret, and TheHarvester.
 
 3. **Configure Claude Desktop:**
 
@@ -102,7 +70,7 @@ Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/
   "mcpServers": {
     "osint-tools": {
       "command": "python",
-      "args": ["/path/to/osint-tools-mcp-server/osint_tools_mcp_server.py"],
+      "args": ["/path/to/osint-tools-mcp-server/src/osint_tools_mcp_server.py"],
       "env": {
         "PYTHONUNBUFFERED": "1"
       }
@@ -113,9 +81,34 @@ Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/
 
 4. **Restart Claude Desktop** to load the new MCP server.
 
-## 🎮 Usage Guide
+### Prerequisites for Additional Tools
 
-### Getting Started - The Art of OSINT with AI
+Some tools require manual installation due to their complexity:
+
+#### SpiderFoot
+```bash
+git clone https://github.com/smicallef/spiderfoot.git /opt/spiderfoot
+cd /opt/spiderfoot
+pip install -r requirements.txt
+```
+
+#### GHunt
+```bash
+git clone https://github.com/mxrch/GHunt.git /opt/ghunt
+cd /opt/ghunt
+pip install -r requirements.txt
+```
+
+#### Blackbird
+```bash
+git clone https://github.com/p1ngul1n0/blackbird.git /opt/blackbird
+cd /opt/blackbird
+pip install -r requirements.txt
+```
+
+## 🎮 Usage Tips
+
+### Getting Started
 
 Working with AI for OSINT is a bit of an art form. Here's how to get the best results:
 

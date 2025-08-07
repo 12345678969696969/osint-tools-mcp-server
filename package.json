@@ -2,12 +2,12 @@
   "name": "osint-tools-mcp-server",
   "version": "1.0.0",
   "description": "MCP server exposing multiple OSINT tools for AI assistants",
-  "main": "osint_tools_mcp_server.py",
+  "main": "src/osint_tools_mcp_server.py",
   "bin": {
-    "osint-tools-mcp": "./osint_tools_mcp_server.py"
+    "osint-tools-mcp": "./src/osint_tools_mcp_server.py"
   },
   "scripts": {
-    "start": "python osint_tools_mcp_server.py"
+    "start": "python src/osint_tools_mcp_server.py"
   },
   "keywords": [
     "mcp",
@@ -45,7 +45,7 @@
     "type": "stdio",
     "runtime": "python",
     "commands": {
-      "default": ["python", "osint_tools_mcp_server.py"]
+      "default": ["python", "src/osint_tools_mcp_server.py"]
     }
   }
 }
