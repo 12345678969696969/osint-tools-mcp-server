@@ -32,12 +32,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yourusername/osint-tools-mcp-server.git"
+    "url": "git+https://github.com/frishtik/osint-tools-mcp-server.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/osint-tools-mcp-server/issues"
+    "url": "https://github.com/frishtik/osint-tools-mcp-server/issues"
   },
-  "homepage": "https://github.com/yourusername/osint-tools-mcp-server#readme",
+  "homepage": "https://github.com/frishtik/osint-tools-mcp-server#readme",
   "engines": {
     "node": ">=16.0.0"
   },

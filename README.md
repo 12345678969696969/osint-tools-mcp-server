@@ -84,7 +84,7 @@ pip install -r requirements.txt
 
 1. **Clone this repository:**
 ```bash
-git clone https://github.com/yourusername/osint-tools-mcp-server.git
+git clone https://github.com/frishtik/osint-tools-mcp-server.git
 cd osint-tools-mcp-server
 ```
 
