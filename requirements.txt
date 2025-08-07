@@ -1,0 +1,10 @@
+# Core dependencies
+asyncio-atexit==1.0.1
+
+# OSINT Tools (install separately for full functionality)
+# pip install sherlock-project
+# pip install holehe
+# pip install maigret
+# pip install theharvester
+# 
+# For SpiderFoot, GHunt, and Blackbird, see installation instructions in README.md
