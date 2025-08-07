@@ -5,7 +5,7 @@
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 [![OSINT](https://img.shields.io/badge/OSINT-Tools-red)](https://github.com/topics/osint)
 
-A comprehensive MCP (Model Context Protocol) server that exposes multiple OSINT (Open Source Intelligence) tools to AI assistants like Claude. This server allows AI to perform sophisticated reconnaissance and information gathering tasks using industry-standard OSINT tools.
+A comprehensive MCP server that exposes multiple OSINT tools to AI assistants like Claude. This server allows AI to perform sophisticated reconnaissance and information gathering tasks using industry-standard OSINT tools.
 
 ## 🛠️ Available Tools
 
